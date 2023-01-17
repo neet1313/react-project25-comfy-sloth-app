@@ -1,9 +1,25 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { Navbar, Sidebar, Footer } from './components'
+import { About, AuthWrapper, Cart, Checkout, Error, Home, Products, SingleProduct, PrivateRoute } from './pages'
 
 function App() {
-  return <h4>comfy sloth starter</h4>
+  return <>
+    <Navbar />
+    <Sidebar />
+
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/products" component={Products} />
+      <Route path="/products/:id" children={SingleProduct} />
+      <Route path="*" component={Error} />
+    </Switch>
+
+    <Footer />
+  </>
 }
 
 export default App
