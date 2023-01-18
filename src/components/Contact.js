@@ -9,8 +9,10 @@ const Contact = () => {
         "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
         "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
       </p>
-      <form className='contact-form'>
-        <input type='email' className='form-input' placeholder='enter email' />
+      <form className='contact-form'
+        action="https://formspree.io/f/xvongqbj"
+        method="POST">
+        <input type='email' className='form-input' placeholder='enter email' name='email' />
         <button type='submit' className='submit-btn'>submit</button>
       </form>
     </div>
