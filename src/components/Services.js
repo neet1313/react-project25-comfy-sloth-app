@@ -1,9 +1,30 @@
 import React from 'react'
+import { GiWarpPipe } from 'react-icons/gi'
 import styled from 'styled-components'
 import { services } from '../utils/constants'
 
 const Services = () => {
-  return <h4>services </h4>
+  return <Wrapper>
+    <div className='section-center'>
+      <article className='header'>
+        <h3>custom furniture <br />
+          built only for you</h3>
+        <p>
+          "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+          "The pain itself, who seeks after it and wants to have it, simply because it is pain..."
+        </p>
+      </article>
+      <div className='services-center'>
+        {services.map(({ id, icon, title, text }) => {
+          return <article key={id} className='service'>
+            <span className='icon'>{icon}</span>
+            <h4>{title}</h4>
+            <p>{text}</p>
+          </article>
+        })}
+      </div>
+    </div>
+  </Wrapper>
 }
 
 const Wrapper = styled.section`
