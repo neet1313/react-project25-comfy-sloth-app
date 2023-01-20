@@ -13,8 +13,8 @@ function App() {
       <Route path="/about" component={About} />
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} />
-      <Route path="/products" component={Products} />
-      <Route path="/products/:id" children={SingleProduct} />
+      <Route path="/products" exact component={Products} />
+      <Route path="/products/:id" component={SingleProduct} />
       <Route path="*" component={Error} />
     </Switch>
 

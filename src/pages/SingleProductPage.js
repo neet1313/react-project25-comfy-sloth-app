@@ -13,9 +13,70 @@ import {
 } from '../components'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { GET_SINGLE_PRODUCT_ERROR_FALSE } from '../actions'
 
 const SingleProductPage = () => {
-  return <h4>single product page</h4>
+  const { fetchSingleProduct, single_product_loading: loading,
+    single_product_error: error,
+    single_product: product, dispatch } = useProductsContext();
+
+  const { id } = useParams();
+  const history = useHistory();
+  const { name, price, description, stock, reviews, id: sku, company, images } = product;
+
+  const redirectToHome = () => {
+    history.push('/');
+    dispatch({ type: GET_SINGLE_PRODUCT_ERROR_FALSE })
+  }
+
+  useEffect(() => {
+    fetchSingleProduct(`${url}${id}`);
+  }, [id]);
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(redirectToHome, 3000);
+    }
+  }, [error])
+
+
+  if (loading) {
+    return <Loading />
+  }
+  if (error) {
+    return <Error />
+  }
+  return <Wrapper>
+    <PageHero title={name} product />
+    <div className='section section-center page'>
+      <Link to='/products' className='btn'>
+        back to products
+      </Link>
+      <div className='product-center'>
+        <ProductImages images={images} />
+        <section className='content'>
+          <h2>{name}</h2>
+          <Stars />
+          <h5 className='price'>{formatPrice(price)}</h5>
+          <p className='desc'>{description}</p>
+          <p className='info'>
+            <span>Available:</span>
+            {stock > 0 ? 'In stock' : 'Out of stock'}
+          </p>
+          <p className='info'>
+            <span>SKU:</span>
+            {sku}
+          </p>
+          <p className='info'>
+            <span>Brand:</span>
+            {company}
+          </p>
+          <hr />
+          {stock > 0 && <AddToCart />}
+        </section>
+      </div>
+    </div>
+  </Wrapper>;
 }
 
 const Wrapper = styled.main`
@@ -52,4 +113,4 @@ const Wrapper = styled.main`
   }
 `
 
-export default SingleProductPage
+export default SingleProductPage;

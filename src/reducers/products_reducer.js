@@ -7,6 +7,7 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
+  GET_SINGLE_PRODUCT_ERROR_FALSE
 } from '../actions'
 
 const products_reducer = (state, action) => {
@@ -27,11 +28,23 @@ const products_reducer = (state, action) => {
         ...state,
         products_loading: false,
         products: action.payload,
-        featured_products
+        featured_products,
       }
 
     case GET_PRODUCTS_ERROR:
       return { ...state, products_loading: false, products_error: true }
+
+    case GET_SINGLE_PRODUCT_BEGIN:
+      return { ...state, single_product_loading: true, single_product_error: false }
+
+    case GET_SINGLE_PRODUCT_SUCCESS:
+      return { ...state, single_product_loading: false, single_product: action.payload }
+
+    case GET_SINGLE_PRODUCT_ERROR:
+      return { ...state, single_product_loading: false, single_product_error: true }
+
+    case GET_SINGLE_PRODUCT_ERROR_FALSE:
+      return { ...state, single_product_error: false }
 
     default:
       throw new Error(`No Matching "${action.type}" - action type`)
