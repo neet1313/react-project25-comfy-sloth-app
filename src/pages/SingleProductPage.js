@@ -16,19 +16,22 @@ import { Link } from 'react-router-dom'
 import { GET_SINGLE_PRODUCT_ERROR_FALSE } from '../actions'
 
 const SingleProductPage = () => {
+  //-------------------------Hooks-----------------------
   const { fetchSingleProduct, single_product_loading: loading,
     single_product_error: error,
     single_product: product, dispatch } = useProductsContext();
-
   const { id } = useParams();
   const history = useHistory();
-  const { name, price, description, stock, reviews, id: sku, company, images } = product;
+  const { name, price, description, stock, id: sku, company, images, reviews, stars } = product;
 
+  //-------------------------Functions-----------------------
   const redirectToHome = () => {
     history.push('/');
     dispatch({ type: GET_SINGLE_PRODUCT_ERROR_FALSE })
   }
 
+
+  //-------------------------Effects-----------------------
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
@@ -39,10 +42,11 @@ const SingleProductPage = () => {
     }
   }, [error])
 
-
+  //-------------------------Conditional Renderings-----------------------
   if (loading) {
     return <Loading />
   }
+
   if (error) {
     return <Error />
   }
@@ -56,7 +60,9 @@ const SingleProductPage = () => {
         <ProductImages images={images} />
         <section className='content'>
           <h2>{name}</h2>
-          <Stars />
+
+          <Stars data={{ stars, reviews }} />
+
           <h5 className='price'>{formatPrice(price)}</h5>
           <p className='desc'>{description}</p>
           <p className='info'>
