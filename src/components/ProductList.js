@@ -4,7 +4,8 @@ import GridView from './GridView'
 import ListView from './ListView'
 
 const ProductList = () => {
-  return <h4>product list</h4>
+  const { filtered_Products: products } = useFilterContext()
+  return <GridView products={products} />
 }
 
 export default ProductList
