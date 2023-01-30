@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
 const Stars = (props) => {
-  console.log(props.data.stars)
   const stars = props.data.stars;
 
   //1.Make an array of 5 elements

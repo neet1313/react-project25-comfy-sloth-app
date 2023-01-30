@@ -23,7 +23,6 @@ const SingleProductPage = () => {
   const { id } = useParams();
   const history = useHistory();
   const { name, price, description, stock, id: sku, company, images, reviews, stars } = product;
-
   //-------------------------Functions-----------------------
   const redirectToHome = () => {
     history.push('/');
@@ -67,7 +66,8 @@ const SingleProductPage = () => {
           <p className='desc'>{description}</p>
           <p className='info'>
             <span>Available:</span>
-            {stock > 0 ? 'In stock' : 'Out of stock'}
+            {`${stock > 0 ? 'In stock ' : 'Out of stock'}`}
+            {stock > 0 && `(${stock} items left)`}
           </p>
           <p className='info'>
             <span>SKU:</span>
@@ -78,7 +78,7 @@ const SingleProductPage = () => {
             {company}
           </p>
           <hr />
-          {stock > 0 && <AddToCart />}
+          {stock > 0 && <AddToCart product={product} />}
         </section>
       </div>
     </div>
