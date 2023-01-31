@@ -12,18 +12,31 @@ import {
 const filter_reducer = (state, action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
-      return { ...state, filtered_Products: [...action.payload], all_products: [...action.payload] }
+      let maxPrice = 0;
+      action.payload.map(product => {
+        (product.price > maxPrice) && (maxPrice = product.price)
+        return maxPrice
+      })
+
+      return {
+        ...state,
+        filtered_Products: [...action.payload],
+        all_products: [...action.payload],
+        filters: { ...state.filters, max_price: maxPrice, price: maxPrice }
+      }
+
     case SET_LISTVIEW:
       return { ...state, grid_view: false }
+
     case SET_GRIDVIEW:
       return { ...state, grid_view: true }
+
     case UPDATE_SORT:
       return { ...state, sort: action.payload }
+
     case SORT_PRODUCTS:
       const { sort, filtered_Products } = state
-
       let tempArr = [...filtered_Products]
-
       if (sort === "price-lowest") {
         tempArr.sort((a, b) => a.price - b.price);
       }
@@ -39,6 +52,12 @@ const filter_reducer = (state, action) => {
 
       return { ...state, filtered_Products: tempArr }
 
+    case UPDATE_FILTERS:
+      const { name, value } = action.payload
+      return { ...state, filters: { ...state.filters, [name]: value } }
+
+    case FILTER_PRODUCTS:
+      return { ...state }
     default:
       throw new Error(`No Matching "${action.type}" - action type`)
   }
