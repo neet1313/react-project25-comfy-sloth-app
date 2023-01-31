@@ -8,10 +8,10 @@ const ProductsPage = () => {
     <Wrapper className='page'>
       <div className="section-center products">
         <Filters />
-        <div>
+        <section>
           <Sort />
           <ProductList />
-        </div>
+        </section>
       </div>
     </Wrapper>
   </main>

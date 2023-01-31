@@ -66,8 +66,7 @@ const SingleProductPage = () => {
           <p className='desc'>{description}</p>
           <p className='info'>
             <span>Available:</span>
-            {`${stock > 0 ? 'In stock ' : 'Out of stock'}`}
-            {stock > 0 && `(${stock} items left)`}
+            {stock > 0 ? <p>In stock  ({stock} items left))</p> : <p style={{ color: '#DB2D07' }}>Out of stock </p>}
           </p>
           <p className='info'>
             <span>SKU:</span>

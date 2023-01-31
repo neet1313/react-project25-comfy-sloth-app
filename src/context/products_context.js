@@ -47,6 +47,7 @@ export const ProductsProvider = ({ children }) => {
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
 
     } catch (error) {
+      console.log(error);
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   }
