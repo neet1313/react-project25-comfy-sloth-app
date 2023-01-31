@@ -27,16 +27,23 @@ export const FilterProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   //---------------------- Functions----------------
-  const gridViewHandler = () => { dispatch({ type: SET_GRIDVIEW }) }
-  const listViewHandler = () => { dispatch({ type: SET_LISTVIEW }) }
+  const gridViewHandler = () => dispatch({ type: SET_GRIDVIEW })
+
+  const listViewHandler = () => dispatch({ type: SET_LISTVIEW })
+
+  const updateSortHandler = e => dispatch({ type: UPDATE_SORT, payload: e.target.value })
 
   //---------------------- Effects----------------
   useEffect(() => {
     dispatch({ type: LOAD_PRODUCTS, payload: products });
   }, [products]);
 
+  useEffect(() => {
+    dispatch({ type: SORT_PRODUCTS })
+  }, [state.sort, products]);
+
   return (
-    <FilterContext.Provider value={{ ...state, gridViewHandler, listViewHandler }}>
+    <FilterContext.Provider value={{ ...state, gridViewHandler, listViewHandler, updateSortHandler }}>
       {children}
     </FilterContext.Provider>
   )
