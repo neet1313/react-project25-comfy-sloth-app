@@ -4,6 +4,7 @@ import { useFilterContext } from '../context/filter_context'
 import { getUniqueValues, formatPrice } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
 
+//--------------------- Destructures ----------------
 const Filters = () => {
   const { filters: {
     text,
@@ -18,8 +19,13 @@ const Filters = () => {
     clearFilterHandler,
     all_products } = useFilterContext();
 
+  //--------------------- Functions and Callbacks ----------------
   const formSubmitHandler = e => { e.preventDefault() }
 
+  const categories = getUniqueValues(all_products, 'category');
+  const companies = getUniqueValues(all_products, 'company');
+  const colors = getUniqueValues(all_products, 'colors');
+  console.log(colors);
   return <Wrapper>
     <div className="content">
       <form onSubmit={formSubmitHandler}>

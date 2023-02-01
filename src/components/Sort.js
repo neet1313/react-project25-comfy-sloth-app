@@ -38,6 +38,7 @@ const Wrapper = styled.section`
   align-items: center;
   margin-bottom: 2rem;
   column-gap: 2rem;
+ 
   @media (max-width: 576px) {
     display: grid;
     grid-template-columns: 1fr;
@@ -89,6 +90,10 @@ const Wrapper = styled.section`
     text-transform: capitalize;
     padding: 0.25rem 0.5rem;
   }
+  .sort-input:focus{
+    outline: none;
+  }
+
   label {
     font-size: 1rem;
     text-transform: capitalize;
