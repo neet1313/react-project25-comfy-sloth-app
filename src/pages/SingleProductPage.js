@@ -22,7 +22,9 @@ const SingleProductPage = () => {
     single_product: product, dispatch } = useProductsContext();
   const { id } = useParams();
   const history = useHistory();
+
   const { name, price, description, stock, id: sku, company, images, reviews, stars } = product;
+
   //-------------------------Functions-----------------------
   const redirectToHome = () => {
     history.push('/');
