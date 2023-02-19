@@ -20,7 +20,7 @@ const initialState = {
   filters: {
     text: '',
     company: 'all',
-    catergory: 'all',
+    category: 'all',
     color: 'all',
     min_price: 0,
     max_price: 0,
@@ -43,7 +43,7 @@ export const FilterProvider = ({ children }) => {
 
   const updateSortHandler = e => dispatch({ type: UPDATE_SORT, payload: e.target.value })
 
-  const updateFilterHandler = (e) => {
+  const updateFilterHandler = e => {
     const name = e.target.name;
     const value = e.target.value;
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
