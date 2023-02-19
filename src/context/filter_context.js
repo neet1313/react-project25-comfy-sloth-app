@@ -44,12 +44,18 @@ export const FilterProvider = ({ children }) => {
   const updateSortHandler = e => dispatch({ type: UPDATE_SORT, payload: e.target.value })
 
   const updateFilterHandler = e => {
-    const name = e.target.name;
-    const value = e.target.value;
+    let name = e.target.name;
+    let value = e.target.value;
+
+    (name === "price") && (value = Number(value));
+    (name === "shipping") && (value = e.target.checked);
+
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   }
 
-  const clearFilterHandler = () => { }
+  const clearFilterHandler = () => {
+    dispatch({ type: CLEAR_FILTERS });
+  }
 
   //---------------------- Effects----------------
   useEffect(() => {

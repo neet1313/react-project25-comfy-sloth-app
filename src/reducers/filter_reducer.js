@@ -9,6 +9,7 @@ import {
   CLEAR_FILTERS,
 } from '../actions'
 
+
 const filter_reducer = (state, action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
@@ -57,7 +58,33 @@ const filter_reducer = (state, action) => {
       return { ...state, filters: { ...state.filters, [name]: value } }
 
     case FILTER_PRODUCTS:
-      return { ...state }
+      const { all_products } = state;
+      const { text,
+        company,
+        category,
+        color,
+        price,
+        shipping
+      } = state.filters;
+      let tempProducts = [...all_products];
+
+      //Filtering
+      (text) && (tempProducts = tempProducts.filter(product => product.name.toLowerCase().startsWith(text.toLowerCase())));
+
+      return { ...state, filtered_Products: tempProducts }
+
+    case CLEAR_FILTERS:
+      return {
+        ...state, filters: {
+          ...state.filters,
+          text: '',
+          company: 'all',
+          category: 'all',
+          color: 'all',
+          price: state.filters.max_price,
+          shipping: false
+        }
+      }
     default:
       throw new Error(`No Matching "${action.type}" - action type`)
   }
