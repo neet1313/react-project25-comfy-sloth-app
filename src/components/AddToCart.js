@@ -11,6 +11,7 @@ const AddToCart = ({ product }) => {
   //----------------- Hooks -------------------------
   const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  const { addToCart } = useCartContext();
 
   //-------------------- Functions ----------------------
   const amountIncreaseHandler = () => {
@@ -36,7 +37,7 @@ const AddToCart = ({ product }) => {
 
     <div className="btn-container">
       <AmountButtons amount={amount} onIncrease={amountIncreaseHandler} onDecrease={amountDecreaseHandler} />
-      <Link to='/cart' className='btn' >add to cart</Link>
+      <Link to='/cart' className='btn' onClick={() => addToCart(id, mainColor, amount, product)}>add to cart</Link>
     </div>
 
   </Wrapper>
