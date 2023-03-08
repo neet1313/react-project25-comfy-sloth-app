@@ -54,7 +54,8 @@ export const CartProvider = ({ children }) => {
     }}>{children}</CartContext.Provider>
   )
 }
-// make sure use
+
+// Custom Hook
 export const useCartContext = () => {
   return useContext(CartContext)
 }
