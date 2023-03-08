@@ -39,8 +39,11 @@ export const CartProvider = ({ children }) => {
 
 
   //----------------- Effects -------------------//
+  // useEffect(() => {
+  //   localStorage.setItem('cart', JSON.stringify(state.cart))
+  // }, [state.cart]);
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(state.cart))
+    localStorage.setItem('cart', JSON.stringify(state.cart));
   }, [state.cart]);
 
 
