@@ -26,10 +26,10 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   //add to cart
-  const addToCart = (id, color, amount, product) => dispatch(({ type: ADD_TO_CART, payload: { id, color, amount, product } }));
+  const addToCart = (id, color, amount, product) => dispatch({ type: ADD_TO_CART, payload: { id, color, amount, product } });
 
   //remove item
-  const removeItem = (id) => { }
+  const removeItem = (id) => dispatch({ type: REMOVE_CART_ITEM, payload: id })
 
   //toggle amount
   const toggleAmount = (id, value) => { }
@@ -39,9 +39,7 @@ export const CartProvider = ({ children }) => {
 
 
   //----------------- Effects -------------------//
-  // useEffect(() => {
-  //   localStorage.setItem('cart', JSON.stringify(state.cart))
-  // }, [state.cart]);
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
   }, [state.cart]);
