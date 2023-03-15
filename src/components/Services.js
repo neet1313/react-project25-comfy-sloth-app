@@ -33,7 +33,6 @@ const Wrapper = styled.section`
     color: var(--clr-primary-1);
   }
   padding: 5rem 0;
-
   background: var(--clr-primary-10);
 
   .header h3 {

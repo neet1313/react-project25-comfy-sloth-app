@@ -1,3 +1,8 @@
+//Navbar active links
+//auth0 login page change logo and background
+//Service section css check
+//Lazy loading and optimizations
+
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Navbar, Sidebar, Footer } from './components'
