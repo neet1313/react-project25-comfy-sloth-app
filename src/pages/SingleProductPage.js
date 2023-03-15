@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useProductsContext } from '../context/products_context'
 import { single_product_url as url } from '../utils/constants'
@@ -26,22 +26,22 @@ const SingleProductPage = () => {
   const { name, price, description, stock, id: sku, company, images, reviews, stars } = product;
 
   //-------------------------Functions-----------------------
-  const redirectToHome = () => {
+  const redirectToHome = useCallback(() => {
     history.push('/');
     dispatch({ type: GET_SINGLE_PRODUCT_ERROR_FALSE })
-  }
+  }, [dispatch, history]);
 
 
   //-------------------------Effects-----------------------
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
-  }, [id]);
+  }, [id, fetchSingleProduct]);
 
   useEffect(() => {
     if (error) {
       setTimeout(redirectToHome, 3000);
     }
-  }, [error])
+  }, [error, redirectToHome])
 
   //-------------------------Conditional Renderings-----------------------
   if (loading) {
