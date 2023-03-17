@@ -2,6 +2,7 @@
 //auth0 login page change logo and background
 //Service section css check
 //Lazy loading and optimizations
+//Change color of stripe loader
 
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'

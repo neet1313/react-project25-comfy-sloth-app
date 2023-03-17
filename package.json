@@ -48,5 +48,6 @@
   },
   "devDependencies": {
     "netlify-cli": "^12.1.0"
-  }
+  },
+  "proxy": "http://localhost:4242"
 }

@@ -1,4 +1,4 @@
-//domain
+//domain/.netlify/functions/hello
 
 const test = [
     { id: 1, name: 'prabhneet' },
