@@ -3,6 +3,10 @@
 //Service section css check
 //Lazy loading and optimizations
 //Change color of stripe loader
+//Purify css
+//load unnecessary scripts at the bottom of the page
+
+
 
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
