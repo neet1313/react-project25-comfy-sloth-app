@@ -5,10 +5,17 @@
 //caching
 
 
-import React from 'react'
+import { Suspense, lazy } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Navbar, Sidebar, Footer } from './components'
-import { About, AuthWrapper, Cart, Checkout, Error, Home, Products, SingleProduct, PrivateRoute } from './pages'
+import { AuthWrapper, Checkout, Error, Home, PrivateRoute } from './pages'
+import { Loading } from './components';
+
+// Lazy Load
+const lazyAboutPage = lazy(() => import('./pages/AboutPage'));
+const lazyCartPage = lazy(() => import('./pages/CartPage'));
+const lazyProductsPage = lazy(() => import('./pages/ProductsPage'));
+const lazySingleProductPage = lazy(() => import('./pages/SingleProductPage'));
 
 function App() {
   return <>
@@ -18,11 +25,13 @@ function App() {
     <AuthWrapper>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/about" exact component={About} />
-        <Route path="/cart" exact component={Cart} />
-        <PrivateRoute path="/checkout" exact ><Checkout /></PrivateRoute>
-        <Route path="/products" exact component={Products} />
-        <Route path="/products/:id" component={SingleProduct} />
+        <Suspense fallback={<Loading />}>
+          <Route path="/about" exact component={lazyAboutPage} />
+          <Route path="/cart" exact component={lazyCartPage} />
+          <PrivateRoute path="/checkout" exact ><Checkout /></PrivateRoute>
+          <Route path="/products" exact component={lazyProductsPage} />
+          <Route path="/products/:id" component={lazySingleProductPage} />
+        </Suspense>
         <Route path="*" component={Error} />
       </Switch>
     </AuthWrapper>
