@@ -1,11 +1,8 @@
 //Navbar active links
-//auth0 login page change logo and background
-//Service section css check
 //Lazy loading and optimizations
-//Change color of stripe loader
 //Purify css
 //load unnecessary scripts at the bottom of the page
-
+//caching
 
 
 import React from 'react'
